@@ -22,7 +22,7 @@ This lab simulates that scenario and implements defensive controls including:
 - Found ssh not preintsalled on the OS, so I updated the mirrors, installed ssh, started ssh, and confirmed that it was running.
 
 Commands used:
-'''bash
+```bash
 sudo systemctl status ssh
 sudo apt update && sudo apt install openssh-server -y
 sudo systemctl enable ssh
