@@ -1,2 +1,3 @@
-# Linux-Server-Hardening-Lab-SSH-Fail2Ban-
-Simulation of brute force attack through ssh, implementing automatic defense controls and ip blocking.
+# Linux Server Hardening Lab (SSH & Fail2Ban)
+##Objective
+  Simulate a real-world ssh brute-force threat scenario and implement defensive controls to reduce attack surface and automatically block malicious login attempts.
