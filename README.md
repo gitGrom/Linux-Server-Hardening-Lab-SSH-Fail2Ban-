@@ -93,3 +93,43 @@ sudo systemctl status ssh
 ![Restart ssh](screenshots/restart_ssh.png)
 
 ### Brute-force attack 2
+- Attempted to ssh into the server with the wrong credentials multiple times, from an external machine
+- IP banned after 3 failed attempts, as configured
+
+Commands used:
+```bash
+ssh noah@192.168.xxx.xxx -p 2222
+```
+![Brute-force Simulation](screenshots/brute-force_sim.png)
+
+## Confirmed Fail2Ban has banned the IP
+
+Commands used:
+```bash
+sudo fail2ban-client status sshd
+```
+![Ban list](screenshots/ban_list.png)
+
+## Checked Authentication log 
+- Goal is to view my failed login attempts
+
+Commands used:
+```bash
+sudo cat /var/log/auth.log | grep sshd
+```
+![Authentication log](screenshots/auth_log.png)
+
+## Confirmed ufw config is unchanged
+
+Commands used:
+```bash
+sudo ufw status
+```
+![Confirm ufw port 2222 remains open](screenshots/confirm_port_2.png)
+
+# Conclusion - Success
+- Hardened ssh by disabling root login, and changing off of the default port (22)
+- Configured firewall to allow our new port
+- Implemented intrusion detection with Fail2Ban
+- Confirmed automated IP banning is working correctly
+- Reviewed logs
