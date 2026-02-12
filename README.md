@@ -1,6 +1,6 @@
 # Linux Server Hardening Lab
 ## Objective
-Simulate a real-world ssh brute-force threat scenario and implement defensive controls to reduce attack surface and automatically block malicious login attempts.
+Simulate a real-world SSH brute-force threat scenario and implement defensive controls to reduce attack surface and automatically block malicious login attempts.
 
 ## Environment
 - Ubuntu Server (VirtualBox VM)
@@ -10,30 +10,30 @@ Simulate a real-world ssh brute-force threat scenario and implement defensive co
 - Secondary machine used to simulate attack traffic
 
 ## Threat Scenario
-Public-facing ssh services are frequently targeted by automated brute-force attacks attempting credential compromise.
+Public-facing SSH services are frequently targeted by automated brute-force attacks attempting credential compromise.
 This lab simulates that scenario and implements defensive controls including:
-- ssh hardening
-- Firwall configuration
+- SSH hardening
+- Firewall configuration
 - Log-based intrusion detection and automated IP banning
 
 # The Lab:
-## Installated ssh
+## Installated SSH
 - Installed Ubuntu Server on a VM for server hardening simulation
-- Found ssh not preintsalled on the OS, so I updated the mirrors, installed ssh, started ssh, and confirmed that it was running.
+- Found SSH not preinstalled on the OS, so I updated package repositories, installed SSH, started SSH, and confirmed that it was running.
 
 Commands used:
 ```bash
 sudo systemctl status ssh
-sudo apt update && sudo apt install openssh-server -y
+sudo apt update && sudo apt install openSSH-server -y
 sudo systemctl enable ssh
 sudo systemctl start ssh
 sudo systemctl status ssh
 ```
 ![Enable & start ssh](screenshots/enable_and_start_ssh.png)
 
-## Hardened ssh
+## Hardened SSH
 - Disabled root login by uncommenting the line and changing 'PermitRootLogin' to no
-- Changed default port to 2222 instead of 22
+- Changed default port from 22 to 2222
 
 Commands used:
 ```bash
@@ -41,7 +41,7 @@ sudo nano /etc/ssh/sshd_config
 ```
 ![ssh config](screenshots/ssh_config.png)
 
-## Restarted ssh
+## Restarted SSH
 
 Commands used:
 ```bash
@@ -63,7 +63,7 @@ sudo ufw status
 ![Confirm ufw has 2222 open](screenshots/confirm_port.png)
 
 ## Installed Fail2Ban
-- Configured fail2ban for ssh
+- Configured fail2ban for SSH
 
 Commands used:
 ```bash
@@ -75,11 +75,11 @@ sudo systemctl restart fail2ban
 ![Fail2Ban Config](screenshots/fail2ban_config.png)
 
 ## Simulating brute-force attack
-- Terminal was hanging at login, so I went back to the server VM to ensure that ufw has port 2222 open and that ssh is listening on the correct port (2222)
-- Found that ssh was not listening on port 2222 as intended
-- Used nano to confirm that the ssh config changes had been commited
-- Restarted ssh to apply config changes
-- Confirmed ssh is now listening on port 2222
+- Terminal was hanging at login, so I went back to the server VM to ensure that ufw has port 2222 open and that SSH is listening on the correct port (2222)
+- Found that SSH was not listening on port 2222 as intended
+- Used nano to confirm that the SSH config changes had been committed
+- Restarted SSH to apply config changes
+- Confirmed SSH is now listening on port 2222
 
 Commands used:
 ```bash
@@ -93,7 +93,7 @@ sudo systemctl status ssh
 ![Restart ssh](screenshots/restart_ssh.png)
 
 ### Brute-force attack 2
-- Attempted to ssh into the server with the wrong credentials multiple times, from an external machine
+- Attempted to SSH into the server with the wrong credentials multiple times, from an external machine
 - IP banned after 3 failed attempts, as configured
 
 Commands used:
@@ -128,7 +128,7 @@ sudo ufw status
 ![Confirm ufw port 2222 remains open](screenshots/confirm_port_2.png)
 
 # Conclusion - Success
-- Hardened ssh by disabling root login, and changing off of the default port (22)
+- Hardened SSH by disabling root login, and changing off of the default port (22)
 - Configured firewall to allow our new port
 - Implemented intrusion detection with Fail2Ban
 - Confirmed automated IP banning is working correctly
