@@ -30,3 +30,13 @@ sudo systemctl start ssh
 sudo systemctl status ssh
 ```
 ![Enable & start ssh](screenshots/enable_and_start_ssh.png)
+
+## Hardening ssh
+- Disabled root login by uncommenting the line and changing 'PermitRootLogin' to no
+- Changed default port to 2222 instead of 22
+
+Commands used:
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+![ssh config](screenshots/ssh_config.png)
