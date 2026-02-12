@@ -16,4 +16,15 @@ This lab simulates that scenario and implements defensive controls including:
 - Firwall configuration
 - Log-based intrusion detection and automated IP banning
 
-# Phase 1: 
+# The Lab:
+## Installation of ssh
+- Installed Ubuntu Server on a VM for server hardening simulation
+- Found ssh not preintsalled on the OS, so I updated the mirrors, installed ssh, started ssh, and confirmed that it was running.
+
+Commands used:
+'''bash
+sudo systemctl status ssh
+sudo apt update && sudo apt install openssh-server -y
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh
