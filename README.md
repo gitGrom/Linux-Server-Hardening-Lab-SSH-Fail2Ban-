@@ -48,7 +48,7 @@ Commands used:
 sudo systemctl restart ssh
 ```
 
-##Installed ufw
+## Installed ufw
 - Confirmed that ufw is installed on the machine
 - Opened port 2222 to TCP connections
 
@@ -72,7 +72,7 @@ sudo systemctl status fail2ban
 sudo nano /etc/fail2ban/jail.local
 sudo systemctl restart fail2ban
 ```
-![Fail2Ban Config](screenshot/fail2ban_config.png)
+![Fail2Ban Config](screenshots/fail2ban_config.png)
 
 ## Simulating brute-force attack
 - Terminal was hanging at login, so I went back to the server VM to ensure that ufw has port 2222 open and that ssh is listening on the correct port (2222)
